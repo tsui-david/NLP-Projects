@@ -12,4 +12,5 @@ CategoryParser holds a set of business ids corresponding to the category.
 
 ##Setup
 Run the YelpDatSetup.py to output a json file that will further be read from for training.
+Make sure the change the filepath of the two Yelp Data files as needed!
 **CURRENTLY IN PROGRESS**
