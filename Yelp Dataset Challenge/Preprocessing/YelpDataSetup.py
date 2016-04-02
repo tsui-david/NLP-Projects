@@ -2,8 +2,8 @@ import re
 import json
 from Parser import *
 
-BUSINESS_PATH = "../../../YelpData/yelp_academic_dataset_business.json"
-REVIEW_PATH = "../../../YelpData/yelp_academic_dataset_review.json"
+BUSINESS_PATH = "../../../YelpData/small_business.json"
+REVIEW_PATH = "../../../YelpData/small_review.json"
 OUTPUT_BUSINESS_PATH = "../../../YelpData/business.json"
 OUTPUT_CATEGORY_PATH = "../../../YelpData/category.json"
 
@@ -43,8 +43,9 @@ for line in rdoc:
 #Overwrite all previous file data
 obdoc.seek(0,0)
 for bkey in bdict:
-    obdoc.write(bdict[bkey].toJSONMachine())
+    obdoc.write(bdict[bkey].toJSONMachine()+'\n')
+
 
 ocdoc.seek(0,0)
 for ckey in cdict:
-    ocdoc.write(cdict[ckey].toJSONMachine())
+    ocdoc.write(cdict[ckey].toJSONMachine()+'\n')

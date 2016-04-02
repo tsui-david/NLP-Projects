@@ -2,8 +2,8 @@
 import re
 import json
 
+#Used to parse the raw json files
 class BusinessParser(object):
-
 
     def __init__(self,id):
         self.id = id
@@ -28,10 +28,10 @@ class BusinessParser(object):
         self.addWords(text)
     #Pretty print json
     def toJSONPretty(self):
-        return json.dumps([{'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary}],sort_keys=True, indent=4, separators=(',', ': '))
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary},sort_keys=True, indent=4, separators=(',', ': '))
     #Json in one line for machine
     def toJSONMachine(self):
-        return json.dumps([{'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary}])
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary})
 class CategoryParser(object):
 
     def __init__(self,categoryName):
@@ -47,10 +47,12 @@ class CategoryParser(object):
         self.numBusinesses += 1
 
     def toJSONPretty(self):
-        return json.dumps([{'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict}],sort_keys=True, indent=4, separators=(',', ': '))
+        return json.dumps({'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict},sort_keys=True, indent=4, separators=(',', ': '))
 
     def toJSONMachine(self):
-        return json.dumps([{'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict}])
+        return json.dumps({'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict})
+
+
 # b = BusinessParser(123)
 # b.addText("HI this is david I am calling on behalf of sdlfjsdf")
 # b.addText("Today is a great day. david are you there. I am calling you")
