@@ -10,21 +10,8 @@ OUTPUT_CATEGORY_PATH = "../../../YelpData/category.json"
 bdoc = open(BUSINESS_PATH)
 rdoc = open(REVIEW_PATH)
 
-obdoc = open(OUTPUT_BUSINESS_PATH, "w+")
+#obdoc = open(OUTPUT_BUSINESS_PATH, "w+")
 ocdoc = open(OUTPUT_CATEGORY_PATH, "w+")
-#Parse categories with businesses
-cdict = {}
-for line in bdoc:
-    b = json.loads(line)
-    bkey = b['business_id']
-    categories = b['categories']
-
-    for category in categories:
-        if category not in cdict:
-            Cat = CategoryParser(category)
-            cdict[category] = Cat
-
-        cdict[category].addBusiness(bkey)
 #Parse business document with reviews
 bdict = {}
 for line in rdoc:
@@ -38,13 +25,29 @@ for line in rdoc:
 
     bdict[bkey].addText(review)
 
-#Write files
+#Parse categories with businesses
+cdict = {}
+for line in bdoc:
+    b = json.loads(line)
+    bkey = b['business_id']
+    categories = b['categories']
+    if bkey in bdict:
+        bobj = bdict[bkey]
+        words = bobj.dictionary
+        numWords = bobj.numWords
+        for category in categories:
+            if category not in cdict:
+                Cat = CategoryParser(category)
+                cdict[category] = Cat
+
+
+            cdict[category].addBusiness(bkey)
+            cdict[category].updateReview(words,numWords)
 
 #Overwrite all previous file data
-obdoc.seek(0,0)
-for bkey in bdict:
-    obdoc.write(bdict[bkey].toJSONMachine()+'\n')
-
+# obdoc.seek(0,0)
+# for bkey in bdict:
+#     obdoc.write(bdict[bkey].toJSONMachine()+'\n')
 
 ocdoc.seek(0,0)
 for ckey in cdict:

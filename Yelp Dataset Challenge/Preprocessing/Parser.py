@@ -10,6 +10,7 @@ class BusinessParser(object):
         self.numReviews = 0
         self.numWords = 0
         self.review = []
+        self.categories = []
         self.dictionary = dict()
 
     def addWords(self,text):
@@ -26,31 +27,33 @@ class BusinessParser(object):
         self.numReviews += 1
 
         self.addWords(text)
+
     #Pretty print json
     def toJSONPretty(self):
-        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary},sort_keys=True, indent=4, separators=(',', ': '))
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary},sort_keys=False, indent=4, separators=(',', ': '))
     #Json in one line for machine
     def toJSONMachine(self):
-        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary})
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary},sort_keys=False)
 class CategoryParser(object):
 
     def __init__(self,categoryName):
         self.name = categoryName
-        self.bdict = {}
+        self.bdict = []
         self.numBusinesses = 0
-
+        self.aggregateReview = {}
+        self.numWords = 0
     def addBusiness(self,id):
-        if id in self.bdict:
-            self.bdict[id] +=1
-        else:
-            self.bdict[id] = 1
+        self.bdict.append(id)
         self.numBusinesses += 1
 
+    def updateReview(self,review,num):
+        self.aggregateReview.update(review)
+        self.numWords += num
     def toJSONPretty(self):
-        return json.dumps({'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict},sort_keys=True, indent=4, separators=(',', ': '))
+        return json.dumps({'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict, 'Term Frequencies':self.aggregateReview, 'Num Words':self.numWords},sort_keys=False, indent=4, separators=(',', ': '))
 
     def toJSONMachine(self):
-        return json.dumps({'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict})
+        return json.dumps({'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict, 'Term Frequencies':self.aggregateReview, 'Num Words':self.numWords},sort_keys=False)
 
 
 # b = BusinessParser(123)
