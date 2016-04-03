@@ -3,16 +3,11 @@ import json
 
 class BusinessObj(object):
 
-    def __init__(self,id,numTerms,termFrequency):
+    def __init__(self,id,category):
         self.ID = id
-        self.num = numTerms
-        self.tf = termFrequency
-
-    def getTF(word):
-        if word in self.tf:
-            return self.tf[word]
-        else:
-            return 0
+        self.Category = category
+    def toJSONMachine(self):
+        return json.dumps({'ID':self.ID,'Predicted Categories':self.Category},sort_keys=False)
 
 class CategoryObj(object):
 
@@ -22,8 +17,8 @@ class CategoryObj(object):
         self.termFrequency = termFrequency
         self.wordSetSize = len(self.termFrequency)
 
-    def getTF(word):
-        if word in self.tf:
-            return self.tf[word]
+    def getTF(self,word):
+        if word in self.termFrequency:
+            return self.termFrequency[word]
         else:
             return 0
