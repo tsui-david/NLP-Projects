@@ -26,25 +26,19 @@ trainSize = size*(.9)
 currSize = 0
 
 porter_stemmer = PorterStemmer()
-count = 0
 for line in rdoc:
-    count += 1 
 #Size counts for paritioning training and testing
     currSize += 1
     b = json.loads(line)
     bkey = b['business_id']
     review = b['text']
-    new_review = wordpunct_tokenize(review)
+    new_sent = wordpunct_tokenize(review)
     
-    new_sent = ''
-    if count < 100:
-        for w in new_review:
-            new_sent += porter_stemmer.stem(w)
-            new_sent += " "
-    else:
-        break
-
-    print new_sent
+    new_review = ''
+    for w in new_sent:
+        new_review += porter_stemmer.stem(w)
+        new_review += " "
+    print new_review
 
     if currSize <= trainSize:
 
@@ -52,13 +46,13 @@ for line in rdoc:
             Bus = BusinessParser(bkey)
             trainDict[bkey] = Bus
 
-        trainDict[bkey].addText(review)
+        trainDict[bkey].addText(new_review)
     else:
         if bkey not in testDict:
             Bus = BusinessParser(bkey)
             testDict[bkey] = Bus
 
-        testDict[bkey].addText(review)
+        testDict[bkey].addText(new_review)
 
 #Parse categories with businesses
 cdict = {}
