@@ -1,6 +1,9 @@
 import re
 import json
+import nltk
 from Parser import *
+from nltk.stem.porter import PorterStemmer
+from nltk.tokenize import word_tokenize, wordpunct_tokenize
 
 BUSINESS_PATH = "../../../YelpData/small_business.json"
 REVIEW_PATH = "../../../YelpData/small_review.json"
@@ -12,6 +15,7 @@ rdoc = open(REVIEW_PATH)
 
 obdoc = open(OUTPUT_TEST_PATH, "w+")
 ocdoc = open(OUTPUT_CATEGORY_PATH, "w+")
+
 #Parse business document with reviews
 trainDict = {}  #Training business dictionary
 testDict = {} #Testing business dicitonary
@@ -21,12 +25,26 @@ rdoc.seek(0,0)
 trainSize = size*(.9)
 currSize = 0
 
+porter_stemmer = PorterStemmer()
+count = 0
 for line in rdoc:
+    count += 1 
 #Size counts for paritioning training and testing
     currSize += 1
     b = json.loads(line)
     bkey = b['business_id']
     review = b['text']
+    new_review = wordpunct_tokenize(review)
+    
+    new_sent = ''
+    if count < 100:
+        for w in new_review:
+            new_sent += porter_stemmer.stem(w)
+            new_sent += " "
+    else:
+        break
+
+    print new_sent
 
     if currSize <= trainSize:
 
