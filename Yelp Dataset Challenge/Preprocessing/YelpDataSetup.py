@@ -1,9 +1,11 @@
 import re
 import json
 import nltk
+from Preprocess import *
 from Parser import *
 from nltk.stem.porter import PorterStemmer
-from nltk.tokenize import word_tokenize, wordpunct_tokenize
+from nltk.metrics import edit_distance
+from nltk.tokenize import wordpunct_tokenize
 
 BUSINESS_PATH = "../../../YelpData/small_business.json"
 REVIEW_PATH = "../../../YelpData/small_review.json"
@@ -32,13 +34,30 @@ for line in rdoc:
     b = json.loads(line)
     bkey = b['business_id']
     review = b['text']
+    # review = "hi my name is.....char"
+    # tokenize the sentence by white space and punctuations; prepare for stemming
     new_sent = wordpunct_tokenize(review)
     
     new_review = ''
+    # stem each words in the sentence
     for w in new_sent:
+        # remove recurring "." or "!"
+        w = removeExtraPunc(w)
+        # decapitalize each word
+        w = w.lower()
+        # remove pronouns
+        w = removePronouns(w, True)
+        # remove apostrophe & postfix of Apostrophe
+        w = removeApostrophe(w, True)
+        # w = removePostfixApos(w, True)
+
+        # Stemming
         new_review += porter_stemmer.stem(w)
         new_review += " "
-    print new_review
+    # remove extra spaces
+    new_review = removeMultipleSpaces(new_review)
+    print "ORI: " + review + "\n"
+    print "NEW: " + new_review + "\n"
 
     if currSize <= trainSize:
 
