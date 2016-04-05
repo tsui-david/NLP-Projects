@@ -1,8 +1,8 @@
 import re
 import json
 import nltk
-from Preprocess import *
 from Parser import *
+from Preprocess import *
 from nltk.stem.porter import PorterStemmer
 from nltk.metrics import edit_distance
 from nltk.tokenize import wordpunct_tokenize
@@ -56,8 +56,8 @@ for line in rdoc:
         new_review += " "
     # remove extra spaces
     new_review = removeMultipleSpaces(new_review)
-    print "ORI: " + review + "\n"
-    print "NEW: " + new_review + "\n"
+    # print "ORI: " + review + "\n"
+    # print "NEW: " + new_review + "\n"
 
     if currSize <= trainSize:
 

@@ -1,8 +1,6 @@
 import re
 import json
 import nltk
-from Parser import *
-from nltk.stem.porter import PorterStemmer
 
 # remove contiguous punctuations (e.g. "......", "...")
 def removeExtraPunc(input_str):
@@ -30,7 +28,6 @@ def removeApostrophe(input_str, bool):
 	else:
 		regex_apos = re.compile(r"'")
 		if regex_apos.match(input_str):
-			print input_str
 			input_str = ''
 	return input_str
 
@@ -40,11 +37,9 @@ def removePostfixApos(input_str, bool):
 	else:
 		regex_post = re.compile(r's|d|ve|ll|m')
 		if regex_post.match(input_str):
-			print input_str
 			input_str = ''
 	return input_str
 
 def removeMultipleSpaces(input_sentence):
 	input_sentence = re.sub(r' +', ' ', input_sentence)
 	return input_sentence
-
