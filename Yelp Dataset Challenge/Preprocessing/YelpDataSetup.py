@@ -33,8 +33,8 @@ for line in rdoc:
     currSize += 1
     b = json.loads(line)
     bkey = b['business_id']
-    review = b['text']
-    # review = "hi my name is.....char"
+    review = b['text']\
+
     # tokenize the sentence by white space and punctuations; prepare for stemming
     new_sent = wordpunct_tokenize(review)
     
@@ -49,6 +49,11 @@ for line in rdoc:
         w = removePronouns(w, True)
         # remove preposition
         w = removePrepositions(w)
+
+        w = removeBe(w)
+        w = removeConjunction(w)
+
+        w = removeNumbers(w)
         # remove apostrophe & postfix of Apostrophe
         w = removeApostrophe(w, True)
         w = removePostfixApos(w, True)
@@ -58,7 +63,7 @@ for line in rdoc:
         new_review += " "
     # remove extra spaces
     new_review = removeMultipleSpaces(new_review)
-    print "ORI: " + review + "\n"
+    # print "ORI: " + review + "\n"
     print "NEW: " + new_review + "\n"
 
     if currSize <= trainSize:
