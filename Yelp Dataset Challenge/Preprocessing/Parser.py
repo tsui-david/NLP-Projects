@@ -11,7 +11,7 @@ class BusinessParser(object):
         self.numReviews = 0
         self.numWords = 0
         self.review = []
-        self.categories = []
+        self.c = []
         self.dictionary = dict()
 
     def addWords(self,text):
@@ -30,13 +30,15 @@ class BusinessParser(object):
         self.addWords(text)
 
     def addCategory(self,category):
-        self.categories = category
+        self.c = category
+
     #Pretty print json
     def toJSONPretty(self):
-        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.categories},sort_keys=False, indent=4, separators=(',', ': '))
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.c},sort_keys=False, indent=4, separators=(',', ': '))
     #Json in one line for machine
     def toJSONMachine(self):
-        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.categories},sort_keys=False)
+        print(self.c)
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.c},sort_keys=False)
 class CategoryParser(object):
 
     def __init__(self,categoryName):
