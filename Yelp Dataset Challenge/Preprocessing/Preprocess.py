@@ -49,7 +49,7 @@ def removePostfixApos(input_str, bool):
 		return input_str
 	else:
 		if input_str in apos_list:
-			print input_str
+			# print input_str
 			input_str = ''
 	return input_str
 
