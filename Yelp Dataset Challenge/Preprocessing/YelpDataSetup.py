@@ -47,17 +47,19 @@ for line in rdoc:
         w = w.lower()
         # remove pronouns
         w = removePronouns(w, True)
+        # remove preposition
+        w = removePrepositions(w)
         # remove apostrophe & postfix of Apostrophe
         w = removeApostrophe(w, True)
-        # w = removePostfixApos(w, True)
+        w = removePostfixApos(w, True)
 
         # Stemming
         new_review += porter_stemmer.stem(w)
         new_review += " "
     # remove extra spaces
     new_review = removeMultipleSpaces(new_review)
-    # print "ORI: " + review + "\n"
-    # print "NEW: " + new_review + "\n"
+    print "ORI: " + review + "\n"
+    print "NEW: " + new_review + "\n"
 
     if currSize <= trainSize:
 

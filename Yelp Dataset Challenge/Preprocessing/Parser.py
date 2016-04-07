@@ -2,6 +2,7 @@
 import re
 import json
 
+
 #Used to parse the raw json files
 class BusinessParser(object):
 
