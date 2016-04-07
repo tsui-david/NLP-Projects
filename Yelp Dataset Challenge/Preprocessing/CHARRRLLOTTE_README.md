@@ -16,3 +16,16 @@ This code will grab the business id and main text from the json file. Once you h
 
 ##Output
 You can output whatever you want. I'm currently thinking along the lines of a json file? Then I can just read it and output the term frequencies!
+
+
+## Charlotte's Preprocessing Note
+
+Stemming/Lemmatization Process:
+- Use nltk "wordpunct_tokenize" to tokenize each line by white space and punctuation
+- Remove recurring punctuations
+- Decapitalize each word in each line
+- Remove all pronouns 
+- Remove all apostrophes (e.g. "'s", "'ve")
+
+- Use nltk "PorterStemmer" to stem each word in the line
+- Remove all extra spaces in the final preprocessed sentence
