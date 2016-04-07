@@ -62,8 +62,8 @@ for line in bdoc:
             cdict[category].updateReview(words,numWords)
 
     elif bkey in testDict:
-        bobj = testDict[bkey]
-        bobj.addCategory(categories)
+        testDict[bkey].addCategory(categories)
+        print(testDict[bkey].toJSONMachine())
 
 #Overwrite all previous file data
 # obdoc.seek(0,0)
