@@ -14,7 +14,7 @@ conjunction_list = ['for', 'and', 'nor', 'but', 'or', 'yet', 'so', 'if']
 # remove contiguous punctuations (e.g. "......", "...")
 def removeExtraPunc(input_str):
 	regex_dots = re.compile(r'\.+')
-	regex_money = re.compile(r'\$+|\!+|\\+|\-+|\/+|\(+|\)+|\[+|\]+|\?+|\:+|\++|\^+|\<+|\>+|\{+|\}+|\&+')
+	regex_money = re.compile(r'\$+|\!+|\\+|\-+|\/+|\(+|\)+|\[+|\]+|\?+|\:+|\++|\^+|\<+|\>+|\{+|\}+|\&+|\%+')
 
 	if regex_dots.match(input_str):
 		# print input_str
