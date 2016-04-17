@@ -58,8 +58,6 @@ bdoc.write(bdoc_str)
 
 bdoc.close()
 
-
-bdoc = open(BUSINESS_PATH)
 #Training/Testing partition
 size =  len(rdoc.readlines())
 rdoc.seek(0,0)
@@ -122,7 +120,9 @@ for line in rdoc:
 
         testDict[bkey].addText(new_review)
 
+bdoc = open(BUSINESS_PATH)
 #Parse categories with businesses
+bdoc.seek(0,0)
 cdict = {}
 for line in bdoc:
     b = json.loads(line)
