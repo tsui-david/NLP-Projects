@@ -12,6 +12,7 @@ class BusinessParser(object):
         self.review = []
         self.c = []
         self.dictionary = dict()
+        self.attributes = {}
 
     def addWords(self,text):
         words = re.split(" ",text)
@@ -30,6 +31,30 @@ class BusinessParser(object):
 
     def addCategory(self,category):
         self.c = category
+
+    def addAttribute(self,attribute, value):
+        if attribute not in self.attributes:
+            self.attributes[attribute] = value
+
+    def getAttributeVector(self,vector,cl):
+        valueVector = [0]*(len(vector))
+
+        for i in range(0,len(vector)):
+            if(vector[i] in self.attributes):
+
+                valueVector[i] = str(self.attributes[vector[i]])
+            else:
+                valueVector[i] = '?'
+        if cl in self.c:
+            valueVector.append(1)
+        else:
+            valueVector.append(0)
+
+        s = ''
+        for j in valueVector:
+            s = s+str(j)+','
+        s = s[:-1]
+        return s
 
     #Pretty print json
     def toJSONPretty(self):
@@ -59,6 +84,21 @@ class CategoryParser(object):
     def toJSONMachine(self):
         return json.dumps({'Category':self.name,'Num Businesses':self.numBusinesses,'Business IDs':self.bdict, 'Term Frequencies':self.aggregateReview, 'Num Words':self.numWords},sort_keys=False)
 
+class WekaCategoryParser:
+    def __init__ (self,key):
+        self.name = key
+        self.nominalValues = set()
+    def addNominalValues(self,value):
+        if value not in self.nominalValues:
+            self.nominalValues.add(value)
+
+    def getNominalValuesString(self):
+        s = '{'
+        for v in self.nominalValues:
+            s += str(v)+','
+        s = s[:-1]
+        s += '}'
+        return s
 
 # b = BusinessParser(123)
 # b.addText("HI this is david I am calling on behalf of sdlfjsdf")
