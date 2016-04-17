@@ -1,0 +1,40 @@
+@Relation Fast Food
+
+@ATTRIBUTE Drive-Thru {False}
+@ATTRIBUTE Alcohol {none}
+@ATTRIBUTE WaiterService {False}
+@ATTRIBUTE HasTV {False}
+@ATTRIBUTE NoiseLevel {average}
+@ATTRIBUTE GoodForGroups {True}
+@ATTRIBUTE latenight {False}
+@ATTRIBUTE street {False}
+@ATTRIBUTE upscale {False}
+@ATTRIBUTE divey {False}
+@ATTRIBUTE Attire {casual}
+@ATTRIBUTE trendy {False}
+@ATTRIBUTE breakfast {False}
+@ATTRIBUTE validated {False}
+@ATTRIBUTE casual {False}
+@ATTRIBUTE Caters {False}
+@ATTRIBUTE valet {False}
+@ATTRIBUTE Delivery {False}
+@ATTRIBUTE hipster {False}
+@ATTRIBUTE lot {False}
+@ATTRIBUTE touristy {False}
+@ATTRIBUTE Take-out {True}
+@ATTRIBUTE intimate {False}
+@ATTRIBUTE dessert {False}
+@ATTRIBUTE AcceptsCreditCards {True}
+@ATTRIBUTE OutdoorSeating {False}
+@ATTRIBUTE lunch {False}
+@ATTRIBUTE PriceRange {1}
+@ATTRIBUTE brunch {False}
+@ATTRIBUTE GoodforKids {True}
+@ATTRIBUTE romantic {False}
+@ATTRIBUTE garage {False}
+@ATTRIBUTE dinner {False}
+@ATTRIBUTE TakesReservations {False}
+@ATTRIBUTE classy {False}
+@ATTRIBUTE class {0,1}
+@DATA
+False,none,False,False,average,True,False,False,False,False,casual,False,False,False,False,False,False,False,False,False,False,True,False,False,True,False,False,1,False,True,False,False,False,False,False,1
