@@ -1,5 +1,6 @@
 import re
 import json
+import ast
 import nltk
 from Parser import *
 from Preprocess import *
@@ -27,16 +28,38 @@ testDict = {} #Testing business dicitonary
 # contains only the 47 main business categories
 main_category_list = []
 
-# extract the main business categories from first column of Excel and insert to list
+# extract the main business categories from first column of Excel file and insert to list
 cat_count = 0;
 for rownum in range(3, excel_doc.nrows):
     cat = str(excel_doc.cell(rownum, 0).value)
     if cat != '':
         main_category_list.append(cat)
         cat_count += 1
+# print main_category_list
 
-print main_category_list
+bdoc_str = ""
+for line in bdoc:
+    entry = line.strip('\n')
+    json_obj = json.loads(entry)
+    for cat in list(json_obj['categories']):
+        index = json_obj['categories'].index(str(cat))
+        if json_obj['categories'][index] not in main_category_list:
+            del json_obj['categories'][index]
+    entry = json.dumps(json_obj)
+    # append modified entry into bdoc_str
+    bdoc_str += str(entry)
+    bdoc_str += "\n"
 
+bdoc.close()
+
+bdoc = open(BUSINESS_PATH, "wb+")
+# write entire new json object into small_business.json file
+bdoc.write(bdoc_str)
+
+bdoc.close()
+
+
+bdoc = open(BUSINESS_PATH)
 #Training/Testing partition
 size =  len(rdoc.readlines())
 rdoc.seek(0,0)
@@ -44,8 +67,9 @@ trainSize = size*(.9)
 currSize = 0
 
 porter_stemmer = PorterStemmer()
+
 for line in rdoc:
-#Size counts for paritioning training and testing
+# Size counts for paritioning training and testing
     currSize += 1
     b = json.loads(line)
     bkey = b['business_id']
@@ -78,6 +102,7 @@ for line in rdoc:
         # Stemming
         new_review += porter_stemmer.stem(w)
         new_review += " "
+
     # remove extra spaces
     new_review = removeMultipleSpaces(new_review)
     # print "ORI: " + review + "\n"
@@ -112,7 +137,6 @@ for line in bdoc:
                 Cat = CategoryParser(category)
                 cdict[category] = Cat
 
-
             cdict[category].addBusiness(bkey)
             cdict[category].updateReview(words,numWords)
 
@@ -130,3 +154,5 @@ for bkey in testDict:
 ocdoc.seek(0,0)
 for ckey in cdict:
     ocdoc.write(cdict[ckey].toJSONMachine()+'\n')
+
+bdoc.close()
