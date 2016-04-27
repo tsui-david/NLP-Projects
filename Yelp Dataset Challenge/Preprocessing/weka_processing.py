@@ -77,6 +77,7 @@ for i in catA:
     #OUTPUT_WEKA_PATH = "../DataOutput/"+i+".arff"
     owdoc = open(OUTPUT_WEKA_PATH, "w+")
     owdoc.seek(0,0)
+    owdoc.write('%Category: '+key)
     owdoc.write('@Relation '+i+'\n\n')
     for a in attDict:
         owdoc.write('@ATTRIBUTE '+str(a)+' '+attDict[a].getNominalValuesString()+'\n')

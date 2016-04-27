@@ -72,10 +72,10 @@ for line in rdoc:
     b = json.loads(line)
     bkey = b['business_id']
     review = b['text']
-
+    attributes = b['attributes']
     # tokenize the sentence by white space and punctuations; prepare for stemming
     new_sent = wordpunct_tokenize(review)
-    
+
     new_review = ''
     # stem each words in the sentence
     for w in new_sent:
@@ -119,6 +119,8 @@ for line in rdoc:
             testDict[bkey] = Bus
 
         testDict[bkey].addText(new_review)
+        testDict[bkey].addRawAttribute(attributes)
+        #Grab raw json for attributes
 
 bdoc = open(BUSINESS_PATH)
 #Parse categories with businesses
