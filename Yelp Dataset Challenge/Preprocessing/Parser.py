@@ -14,6 +14,7 @@ class BusinessParser(object):
         self.c = []
         self.dictionary = dict()
         self.attributes = {}
+        self.raw_attributes = ""
 
     def addWords(self,text):
         words = re.split(" ",text)
@@ -36,6 +37,8 @@ class BusinessParser(object):
     def addAttribute(self,attribute, value):
         if attribute not in self.attributes:
             self.attributes[attribute] = value
+    def addRawAttribute(self,raw_attribute):
+        self.raw_attributes = raw_attribute
 
     def getAttributeVector(self,vector,cl):
         valueVector = [0]*(len(vector))
@@ -59,11 +62,11 @@ class BusinessParser(object):
 
     #Pretty print json
     def toJSONPretty(self):
-        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.c},sort_keys=False, indent=4, separators=(',', ': '))
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.c, 'Attributes': self.raw_attributes},sort_keys=False, indent=4, separators=(',', ': '))
     #Json in one line for machine
     def toJSONMachine(self):
         print(self.c)
-        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.c},sort_keys=False)
+        return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.c, 'Attributes': self.raw_attributes},sort_keys=False)
 class CategoryParser(object):
 
     def __init__(self,categoryName):

@@ -4,7 +4,7 @@ from Parser import *
 
 #TEST_PATH = "../DataOutput/test.txt"
 #INPUT_PATH = "../../../YelpData/small_business.json"
-BUSINESS_PATH = "../../../YelpData/small_business.json"
+BUSINESS_PATH = "../../../YelpData/testAnswers.json"
 
 
 bdoc = open(BUSINESS_PATH)
@@ -19,8 +19,8 @@ tbusiness = []
 
 for line in bdoc:
     b = json.loads(line)
-    bkey = b['business_id']
-    categories = b['categories']
+    bkey = b['ID']
+    categories = b['Categories']
 
     bus = BusinessParser(bkey)
 
@@ -30,7 +30,7 @@ for line in bdoc:
             catA.append(cat)
 
     bus.addCategory(categories)
-    attributes = b['attributes']
+    attributes = b['Attributes']
 
     for i in attributes:
         if isinstance(attributes[i],dict):
@@ -51,12 +51,6 @@ for line in bdoc:
             attDict[i].addNominalValues(attributes[key])
     tbusiness.append(bus)
 
-# s = "{"
-# for i in catA:
-#     s = s+i+', '
-#
-# s = s[:-2]+'}'
-
 
 attA = []
 for a in attDict:
@@ -75,14 +69,24 @@ for i in catA:
     count+=1
     OUTPUT_WEKA_PATH = "../../../YelpData/weka/"+i+".arff"
     #OUTPUT_WEKA_PATH = "../DataOutput/"+i+".arff"
-    owdoc = open(OUTPUT_WEKA_PATH, "w+")
+
+    owdoc = open(OUTPUT_WEKA_PATH, "w+",0)
     owdoc.seek(0,0)
-    owdoc.write('%Category: '+key)
+    owdoc.write('%Category: '+key+'\n')
     owdoc.write('@Relation '+i+'\n\n')
+
+
     for a in attDict:
+
         owdoc.write('@ATTRIBUTE '+str(a)+' '+attDict[a].getNominalValuesString()+'\n')
+
     #Get string of array
     owdoc.write('@ATTRIBUTE class {0,1}\n')
     owdoc.write('@DATA\n')
+
+    count2 = 0
     for b in tbusiness:
+        count2 += 1
         owdoc.write(b.getAttributeVector(attA,key)+'\n')
+    print(count2)
+    owdoc.close()
