@@ -7,15 +7,15 @@ import os
 # recall
 # num predicted right out of categories predicted/num of correct categories
 
-PATH_TO_ANSWERS = "../../../YelpData/SplitFiles/Split1/NaiveBayesTest.txt"
-PATH_TO_PREDICTIONS = "../../../YelpData/SplitFiles/Split1/prediction.txt"
+PATH_TO_ANSWERS = "../../../YelpDevData/naiveBayesTest.txt"
+PATH_TO_PREDICTIONS = "../../../YelpDevData/prediction.txt"
 
-PATH_TO_WEKA = '../../../YelpData/weka/predictions/'
-PATH_TO_WEKA_PREDICTIONS = '../../../YelpData/weka/wekapredictions.json'
+PATH_TO_WEKA = '../../../YelpDevData/weka_test/'
+PATH_TO_WEKA_PREDICTIONS = '../../../YelpDevData/wekapredictions.json'
 
 
 # if prob of prediction of prediction is greater than this threshold than the category exists for the business
-PREDICTION_THRESHOLD = 0.5
+PREDICTION_THRESHOLD = 1
 
 
 class Evaluation:
@@ -54,19 +54,18 @@ class Evaluation:
 
 			# get category of current file
 			curr_cat = f.readline().strip()
-			print(curr_cat)
 			for line in f:
 				values = line.strip('\n').split()
 				#print values
-				print(values)
+
 				b_id = values[1]
+
 				prob = float(values[3])
 				act_val = float(values[5])
 
 				if b_id not in business_predictions:
 					business_predictions[b_id] = {}
 					business_predictions[b_id]['Predicted Categories'] = []
-					business_predictions[b_id]['Actual Categories'] = []
 					order_business.append(b_id)
 
 
@@ -87,7 +86,6 @@ class Evaluation:
 				json_obj["ID"] = ID
 
 				fn.write(json.dumps(json_obj) + '\n')
-
 
 
 
@@ -138,4 +136,4 @@ class Evaluation:
 		print 'Recall: %s %%' % (recall)
 
 
-Evaluation(2)
+Evaluation(1)

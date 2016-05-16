@@ -1,0 +1,35 @@
+== Basic Examples ==
+A plain number like one thousand two hundred thirty four point five hundred sixty seven .
+A date like January fifteenth , two thousand fifteen .
+A dollar amount like three dollars and twenty five cents .
+A percentage like zero point thirty five percent .
+A fraction like seven eighths or three and one half .
+In eighteen eighty four, congress passed the first amendment
+== Made-up Examples with Slight Variations ==
+Here are some possible variations to the basic cases :
+An ordinal number like forty second street , or twentieth .
+A large number without comma like twelve million three hundred forty five thousand six hundred seventy eight point nine thousand one hundred twenty three .
+A large number with comma like twelve million three hundred forty five thousand six hundred seventy eight point nine thousand one hundred twenty three .
+A dollar amount with names appended like one point six billion dollars or twelve point four million dollars .
+A dollar amount with more than two digits in the cent part like twelve dollars and thirty four point five cents .
+A fractional percentage is five and four sixths percent .
+A date without day like January , two thousand sixteen .
+A date without year like January fourteenth .
+A date with abbreviation like Jan fourteenth or Jan. fourteenth .
+A large dollar amount like nine hundred seventy four point eight hundred twelve million dollars or nine hundred seventy four million eight hundred twelve thousand dollars .
+
+== Real Sentences from WSJ ==
+one hundred fifty million dollars of eight point fifty five percent senior notes due Oct. fifteenth , two thousand nine , priced at par .
+Sales amounted to seven hundred seventy one point four million dollars , down one point seven percent from seven hundred eighty four point nine million dollars .
+Weatherford currently has approximately eleven point one million common shares outstanding .
+Anticipating the Fed 's move , money traders lowered a key interest rate known as the Federal Funds rate to eight point six hundred twenty five percent late Friday , down from eight point eight hundred twenty percent the day before .
+On Oct. sixteenth , nineteen eighty seven , the Nasdaq Composite fell sixteen point eighteen points , or three point eight percent , followed by its devastating forty six point twelve-point , or eleven percent slide , three days later .
+Lopid sales are expected to be about three hundred million dollars this year , up from one hundred ninety million dollars in nineteen eighty eight .
+Kollmorgen shares fell nearly twenty percent on Friday to close at twelve and seven eighths .
+The Ginnie Mae November nine percent issue ended at ninety eight and twenty five thirty seconds , up seven eighths point on the day , to yield about nine point twenty eight percent to a twelve-year average life assumption .
+Matsushita 's share in the venture will rise to thirty five percent Oct. first , nineteen ninety , and to fifty percent the following Oct. first .
+Stocks : Volume two hundred fifty one million one hundred seventy thousand shares .
+The Dow Jones industrials skidded one hundred ninety point fifty eight , to two thousand five hundred sixty nine point twenty six .
+The benchmark thirty-year Treasury bond was quoted six p.m. EDT at one hundred three and twelve thirty seconds , compared with one hundred and twenty seven thirty seconds Thursday , up two and one half points .
+The interest-only securities were priced at thirty five and one half to yield ten point seventy two percent .
+Beech Aircraft Corp. , a unit of Raytheon Co. , received an eleven point five million dollars Air Force contract for C-twelve aircraft support .

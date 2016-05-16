@@ -1,0 +1,35 @@
+== Basic Examples ==
+A plain number like 1,234.567 .
+A date like January 15 , 2015 .
+A dollar amount like $ 3.25 .
+A percentage like 0.35 % .
+A fraction like 7\/8 or 3 1\/2 .
+In 1884, congress passed the first amendment
+== Made-up Examples with Slight Variations ==
+Here are some possible variations to the basic cases :
+An ordinal number like 42nd street , or 20th .
+A large number without comma like 12345678.9123 .
+A large number with comma like 12,345,678.9123 .
+A dollar amount with names appended like $ 1.6 billion or $ 12.4 million .
+A dollar amount with more than 2 digits in the cent part like $ 12.345 .
+A fractional percentage is 5 4\/6 % .
+A date without day like January , 2016 .
+A date without year like January 14 .
+A date with abbreviation like Jan 14 or Jan. 14 .
+A large dollar amount like $ 974.812 million or $ 974,812,000 .
+
+== Real Sentences from WSJ ==
+$ 150 million of 8.55 % senior notes due Oct. 15 , 2009 , priced at par .
+Sales amounted to $ 771.4 million , down 1.7 % from $ 784.9 million .
+Weatherford currently has approximately 11.1 million common shares outstanding .
+Anticipating the Fed 's move , money traders lowered a key interest rate known as the Federal Funds rate to 8.625 % late Friday , down from 8.820 % the day before .
+On Oct. 16 , 1987 , the Nasdaq Composite fell 16.18 points , or 3.8 % , followed by its devastating 46.12-point , or 11 % slide , three days later .
+Lopid sales are expected to be about $ 300 million this year , up from $ 190 million in 1988 .
+Kollmorgen shares fell nearly 20 % on Friday to close at 12 7\/8 .
+The Ginnie Mae November 9 % issue ended at 98 25\/32 , up 7\/8 point on the day , to yield about 9.28 % to a 12-year average life assumption .
+Matsushita 's share in the venture will rise to 35 % Oct. 1 , 1990 , and to 50 % the following Oct. 1 .
+Stocks : Volume 251,170,000 shares .
+The Dow Jones industrials skidded 190.58 , to 2569.26 .
+The benchmark 30-year Treasury bond was quoted 6 p.m. EDT at 103 12\/32 , compared with 100 27\/32 Thursday , up 2 1\/2 points .
+The interest-only securities were priced at 35 1\/2 to yield 10.72 % .
+Beech Aircraft Corp. , a unit of Raytheon Co. , received an $ 11.5 million Air Force contract for C-12 aircraft support .

@@ -6,7 +6,7 @@ PERC_TRAINING_FILES = .80
 PERC_TEST_FILES = (1-PERC_TRAINING_FILES)
 
 
-PATH_TO_SPLIT_FOLDERS = '../../../YelpData/SplitFiles/Split'
+PATH_TO_SPLIT_FOLDERS = '../../../YelpDevData/Split'
 
 class SplitText:
 
@@ -58,5 +58,5 @@ class SplitText:
 
 
 
-path = '../../../YelpData/processed_business.json'
+path = '../../../YelpDevData/dev_business_cat.json'
 SplitText(path)

@@ -41,6 +41,7 @@ class BusinessParser(object):
         self.raw_attributes = raw_attribute
 
     def getAttributeVector(self,vector,cl):
+
         valueVector = [0]*(len(vector))
 
         for i in range(0,len(vector)):
@@ -60,6 +61,24 @@ class BusinessParser(object):
         s = s[:-1]
         return s
 
+    def getAttributeVectorTest(self,vector):
+
+        valueVector = [0]*(len(vector))
+
+        for i in range(0,len(vector)):
+            if(vector[i] in self.attributes):
+                valueVector[i] = str(self.attributes[vector[i]])
+            else:
+                valueVector[i] = '?'
+
+        valueVector.append(self.c[0])
+
+
+        s = ''
+        for j in valueVector:
+            s = s+str(j)+','
+        s = s[:-1]
+        return s
     #Pretty print json
     def toJSONPretty(self):
         return json.dumps({'ID':self.id,'Num Words':self.numWords,'Term Frequencies':self.dictionary, 'Categories':self.c, 'Attributes': self.raw_attributes},sort_keys=False, indent=4, separators=(',', ': '))

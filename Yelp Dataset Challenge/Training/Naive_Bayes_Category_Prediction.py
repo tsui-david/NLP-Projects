@@ -15,27 +15,38 @@ class Naive_Bayes_Category_Classifier:
         opdoc = open(PREDICTION_OUTPUT_PATH,"w+")
 
         V = 0
-        alpha = .5 #Smoothing value for 0 occurences (1 == Laplacian)
-        threshold = 0.5
-
+        alpha = .1 #Smoothing value for 0 occurences (1 == Laplacian)
+        threshold = .2
+        size = len(train_doc.readlines())
+        print("Num Categories: %d")%(size)
+        train_doc.seek(0,0)
+        currLine = 0
         ## -- CLASSIFIER SETUP --
         cdict = {}
+
+        vocab = set()
         for line in train_doc:
             c = json.loads(line)
             cName = c['Category']
             cTF = c['Term Frequencies']
             cNum = c['Num Words']
-            V += cNum
+            for word in cTF:
+                if word not in vocab:
+                    vocab.add(word)
             if cName not in cdict:
                 newCat = CategoryObj(cName,cNum,cTF)
                 cdict[cName] = newCat
             else:
                 print "Error can't have extra categories in a set!"+" Category: "+cName
                 break
+            currLine+=1
+            #print("Training category %d out of %d") % (currLine,size)
 
+        V = len(vocab)
         ## -- PREDICTION SETUP --
-        size =  len(train_doc.readlines())
-        train_doc.seek(0,0)
+        size =  len(test_doc.readlines())
+        print("Num test businesses %d") %(size)
+        test_doc.seek(0,0)
         currLine = 0
         testDict = []
         for line in test_doc:
@@ -52,7 +63,6 @@ class Naive_Bayes_Category_Classifier:
                 prob = 0
                 catObj = cdict[category]
                 sumProb = 0.0
-
                 for word in bTF:
                     sumWordTF = catObj.getTF(word)+alpha
                     allTF = catObj.numWords+alpha*V
@@ -70,7 +80,9 @@ class Naive_Bayes_Category_Classifier:
             for cat in predictDict:
                 sumProb = predictDict[cat]
                 allProb = sumProb/sumCatProb
+
                 if allProb >= threshold:
+                    print(allProb)
                     predictions.append(cat)
 
             if(len(predictions) == 0):
@@ -80,14 +92,15 @@ class Naive_Bayes_Category_Classifier:
 
             bObj = BusinessObj(bID,predictions)
             testDict.append(bObj)
-            print("%d out of %d completed") % (currLine,size)
 
-        ## -- WRITE OUT PREDICTIONS --
-        opdoc.seek(0,0)
-        for business in testDict:
-            opdoc.write(business.toJSONMachine()+'\n')
+                #print("Prediction: %d out of %d completed") % (currLine,size)
+                #break
+            ## -- WRITE OUT PREDICTIONS --
+            opdoc.seek(0,0)
+            for business in testDict:
+                opdoc.write(business.toJSONMachine()+'\n')
 
-training_path = "../../../YelpData/SplitFiles/Split1/naiveBayesTrain.txt"
-testing_path = "../../../YelpData/SplitFiles/Split1/naiveBayesTest.txt"
-output_path = "../../../YelpData/SplitFiles/Split1/"
+training_path = "../../../YelpDevData/naiveBayesTrain.txt"
+testing_path = "../../../YelpDevData/naiveBayesTest.txt"
+output_path = "../../../YelpDevData/"
 a = Naive_Bayes_Category_Classifier(training_path,testing_path,output_path)

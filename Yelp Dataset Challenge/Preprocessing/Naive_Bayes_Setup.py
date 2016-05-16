@@ -1,9 +1,6 @@
-### TestTrainSetup is a simple python file that produces testing and training file in formatted json objects that both
-### the naive bayes language model
+###Naive Bayes Setup is a script used to produce testing and training files that will be used for the naive bayes classifier
+## This is done AFTER the testing and training files have already been split from the raw files
 
-## This is done AFTER the testing and training files have already been split from the raw files --> See background down below
-###Review.json is used for the naive bayes training and testing
-###Business.json stores all the information on the businesses, it is used for both logistic regression and naive bayes
 import re
 import json
 import ast
@@ -61,6 +58,10 @@ class Naive_Bayes_Setup:
         print("Creating training files ...")
         ## -- NAIVE BAYES: Create training file
         cdict = {}  #Dictionary of category class objects, keyed by category name
+        size = len(train_doc.readlines())
+        print("Num train businesses: %d") %(size)
+        train_doc.seek(0,0)
+        currLine = 0
         for line in train_doc:
             b = json.loads(line)
             bkey = b['business_id']
@@ -77,12 +78,18 @@ class Naive_Bayes_Setup:
 
                     cdict[category].addBusiness(bkey)
                     cdict[category].updateReview(words,numWords)
+            currLine+=1
+            #print("Training business %d out of %d") % (currLine,size)
         # Write to file
         for ckey in cdict:
             output_train_doc.write(cdict[ckey].toJSONMachine()+'\n')
 
         print("Creating test files ...")
         ## -- NAIVE BAYES: Create test file
+        size = len(test_doc.readlines())
+        print("Num test businesses: %d") %(size)
+        test_doc.seek(0,0)
+        currLine = 0
         test_dict = {} #Dictionary of business class object, keyed by business ids
         for line in test_doc:
             b = json.loads(line)
@@ -93,9 +100,13 @@ class Naive_Bayes_Setup:
             if bkey in aggr_review_dict:
                 aggr_review_dict[bkey].addCategory(categories)
                 aggr_review_dict[bkey].addRawAttribute(attributes)
+                print("Creating test business %d out of %d") % (currLine,size)
                 output_test_doc.write(aggr_review_dict[bkey].toJSONMachine()+'\n')
+            currLine+=1
 
-test_path = "../../../YelpData/SplitFiles/Split1/test.txt"
-train_path = "../../../YelpData/SplitFiles/Split1/training.txt"
-output_path = "../../../YelpData/SplitFiles/Split1/"
+
+
+test_path = "../../../YelpDevData/test.txt"
+train_path = "../../../YelpDevData/training.txt"
+output_path = "../../../YelpDevData/"
 a = Naive_Bayes_Setup(train_path,test_path,output_path)

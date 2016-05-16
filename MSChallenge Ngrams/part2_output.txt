@@ -1,0 +1,13 @@
+Devlopment file results:
+<s> a a , b h </s> 	-2.440161
+<s> a b a i </s> 	-4.622769
+<s> a b , a b a </s> 	-inf
+<s> b b , j , b , a </s> 	-inf
+<s> a a , a b , b </s>	-inf
+
+Test file results:
+<s> b a , a a </s> 	-3.620401
+<s> b a h </s> 	-4.218427
+<s> b a , i </s> 	-inf
+<s> a b , j k , b a </s> 	-inf
+<s> a a , a b , b </s>	-inf
